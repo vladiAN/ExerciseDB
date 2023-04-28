@@ -16,6 +16,14 @@ struct Exercise: Codable {
     let target: String
 }
 
+struct ListOfBodyParts: Codable {
+    let name: String
+}
+
+struct ListOfTargetMuscles: Codable {
+    let name: String
+}
+
 
 
 struct Webservice {

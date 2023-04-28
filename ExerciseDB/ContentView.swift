@@ -9,19 +9,25 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedTab: CustomTab = .home
+    let colorBackground = #colorLiteral(red: 0.368512094, green: 0.1596673727, blue: 0.4955242872, alpha: 1)
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            switch selectedTab {
-            case .search:
-                SearchView()
-            case .home:
-                HomeView()
-            case .liked:
-                LikedView()
+            Color(colorBackground)
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 0) {
+                switch selectedTab {
+                case .search:
+                    SearchView()
+                case .home:
+                    HomeView()
+                case .liked:
+                    LikedView()
+                }
+                CustomTabBar(selectedTab: $selectedTab)
             }
             
-            CustomTabBar(selectedTab: $selectedTab)
         }
         .edgesIgnoringSafeArea(.bottom)
     }
