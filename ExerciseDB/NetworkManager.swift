@@ -7,7 +7,16 @@
 
 import Foundation
 
-struct Exercise: Codable {
+struct ExerciseTest {
+    let bodyPart: String = "upper arms"
+    let equipment: String = "band"
+    let gifUrl: String = "http://d205bpvrqc9yn1.cloudfront.net/0968.gif"
+    let id: String = "1"
+    let name: String = "band"
+    let target: String = "biceps"
+}
+
+struct Exercise: Identifiable, Codable, Hashable {
     let bodyPart: String
     let equipment: String
     let gifUrl: String

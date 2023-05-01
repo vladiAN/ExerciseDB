@@ -21,12 +21,13 @@ struct CellWithButton: View {
                     Text(text)
                         .padding(.leading, 26)
                     Spacer()
-                    NavigationLink(destination: ExerciseList(nameLink: text)) {
+                    NavigationLink(destination: ExerciseList(categoryForLink: text)) {
                         Image(uiImage: UIImage(named: "buttonCell")!)
                             .resizable()
                             .frame(width: 45, height: 45)
                             .foregroundColor(.red)
                     }
+                    
                     .buttonStyle(PlainButtonStyle())
                     .padding(.trailing, 21)
                 }

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C001A39329F6FC55002A1FE6 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001A39229F6FC55002A1FE6 /* CustomTabBar.swift */; };
 		C00D121F29F98F6000FA41C1 /* PartList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D121E29F98F6000FA41C1 /* PartList.swift */; };
+		C03FBF8829FBE8E300551ABB /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FBF8729FBE8E300551ABB /* ExerciseCell.swift */; };
+		C03FBF8E29FBFE1800551ABB /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = C03FBF8D29FBFE1800551ABB /* FLAnimatedImage */; };
+		C03FBF9029FC04AD00551ABB /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FBF8F29FC04AD00551ABB /* GIFView.swift */; };
 		C04D189629F9517A00599B5F /* BodyMusclesTogle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04D189529F9517A00599B5F /* BodyMusclesTogle.swift */; };
 		C0E70AB629F2A67F005D71CE /* ExerciseDBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E70AB529F2A67F005D71CE /* ExerciseDBApp.swift */; };
 		C0E70AB829F2A67F005D71CE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E70AB729F2A67F005D71CE /* SearchView.swift */; };
@@ -25,7 +28,10 @@
 /* Begin PBXFileReference section */
 		C001A39229F6FC55002A1FE6 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		C00D121E29F98F6000FA41C1 /* PartList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartList.swift; sourceTree = "<group>"; };
+		C03FBF8729FBE8E300551ABB /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
+		C03FBF8F29FC04AD00551ABB /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
 		C04D189529F9517A00599B5F /* BodyMusclesTogle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyMusclesTogle.swift; sourceTree = "<group>"; };
+		C09A2AC329FC3B440003E33E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C0E70AB229F2A67F005D71CE /* ExerciseDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExerciseDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E70AB529F2A67F005D71CE /* ExerciseDBApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDBApp.swift; sourceTree = "<group>"; };
 		C0E70AB729F2A67F005D71CE /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -44,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C03FBF8E29FBFE1800551ABB /* FLAnimatedImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +64,8 @@
 				C04D189529F9517A00599B5F /* BodyMusclesTogle.swift */,
 				C00D121E29F98F6000FA41C1 /* PartList.swift */,
 				C0FC950B29FA8C9B00B90ECC /* CellWithButton.swift */,
+				C0FC950D29FABFA800B90ECC /* ExerciseList.swift */,
+				C03FBF8729FBE8E300551ABB /* ExerciseCell.swift */,
 			);
 			name = HomeScreen;
 			sourceTree = "<group>";
@@ -80,13 +89,14 @@
 		C0E70AB429F2A67F005D71CE /* ExerciseDB */ = {
 			isa = PBXGroup;
 			children = (
+				C09A2AC329FC3B440003E33E /* Info.plist */,
 				C0E70AB529F2A67F005D71CE /* ExerciseDBApp.swift */,
 				C0E70AC329F2A6AF005D71CE /* NetworkManager.swift */,
 				C001A39229F6FC55002A1FE6 /* CustomTabBar.swift */,
 				C00D121D29F95F7800FA41C1 /* HomeScreen */,
 				C0E70AB729F2A67F005D71CE /* SearchView.swift */,
 				C0E9DB9D29F7E38D00AF000B /* LikedView.swift */,
-				C0FC950D29FABFA800B90ECC /* ExerciseList.swift */,
+				C03FBF8F29FC04AD00551ABB /* GIFView.swift */,
 				C0E9DB9F29F7F1F500AF000B /* ContentView.swift */,
 				C0E70AB929F2A686005D71CE /* Assets.xcassets */,
 				C0E70ABB29F2A686005D71CE /* Preview Content */,
@@ -118,6 +128,9 @@
 			dependencies = (
 			);
 			name = ExerciseDB;
+			packageProductDependencies = (
+				C03FBF8D29FBFE1800551ABB /* FLAnimatedImage */,
+			);
 			productName = ExerciseDB;
 			productReference = C0E70AB229F2A67F005D71CE /* ExerciseDB.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +159,9 @@
 				Base,
 			);
 			mainGroup = C0E70AA929F2A67F005D71CE;
+			packageReferences = (
+				C03FBF8C29FBFE1800551ABB /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
+			);
 			productRefGroup = C0E70AB329F2A67F005D71CE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -174,9 +190,11 @@
 			files = (
 				C0E9DB9E29F7E38D00AF000B /* LikedView.swift in Sources */,
 				C0E70AB829F2A67F005D71CE /* SearchView.swift in Sources */,
+				C03FBF9029FC04AD00551ABB /* GIFView.swift in Sources */,
 				C0E9DBA029F7F1F500AF000B /* ContentView.swift in Sources */,
 				C0FC950C29FA8C9B00B90ECC /* CellWithButton.swift in Sources */,
 				C001A39329F6FC55002A1FE6 /* CustomTabBar.swift in Sources */,
+				C03FBF8829FBE8E300551ABB /* ExerciseCell.swift in Sources */,
 				C0E70AB629F2A67F005D71CE /* ExerciseDBApp.swift in Sources */,
 				C00D121F29F98F6000FA41C1 /* PartList.swift in Sources */,
 				C0E9DB9C29F7E37000AF000B /* HomeView.swift in Sources */,
@@ -314,9 +332,9 @@
 				DEVELOPMENT_TEAM = 787WGZ5DQQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExerciseDB/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -343,9 +361,9 @@
 				DEVELOPMENT_TEAM = 787WGZ5DQQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExerciseDB/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -383,6 +401,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C03FBF8C29FBFE1800551ABB /* XCRemoteSwiftPackageReference "FLAnimatedImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Flipboard/FLAnimatedImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C03FBF8D29FBFE1800551ABB /* FLAnimatedImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C03FBF8C29FBFE1800551ABB /* XCRemoteSwiftPackageReference "FLAnimatedImage" */;
+			productName = FLAnimatedImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C0E70AAA29F2A67F005D71CE /* Project object */;
 }
