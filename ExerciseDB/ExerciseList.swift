@@ -55,54 +55,65 @@ struct ExerciseList: View {
     ]
     @State private var showErrorAlert = false
     @State private var errorMessage = "Bad URL"
-    var categoryForLink: String
+    var navigationTitle: String
+    var linkForCategory: String
+    
+    var userDefaultsManager = FavoritesManager.shared
     
     
     
     let colorBackground = #colorLiteral(red: 0.368512094, green: 0.1596673727, blue: 0.4955242872, alpha: 1)
 
     var body: some View {
+        
         ZStack {
             Color(colorBackground)
                 .edgesIgnoringSafeArea(.all)
-            ScrollView{
-                Spacer(minLength: 18)
-                LazyVStack(spacing: 18) {
-                    ForEach(exercise, id: \.self) { exercise in
-                        ExerciseCell(urlGif: exercise.gifUrl,
-                                     name: exercise.name,
-                                     bodyPart: exercise.bodyPart,
-                                     target: exercise.target,
-                                     equipment: exercise.equipment)
+            if #available(iOS 16.0, *) {
+                ScrollView{
+                    Spacer(minLength: 18)
+                    LazyVStack(spacing: 18) {
+                        ForEach(exercise, id: \.self) { exercise in
+                            ExerciseCell(
+                                isLiked: userDefaultsManager.isContainsExercise(idExercise: exercise.id),
+                                urlGif: exercise.gifUrl,
+                                name: exercise.name,
+                                bodyPart: exercise.bodyPart,
+                                target: exercise.target,
+                                equipment: exercise.equipment,
+                                id: exercise.id
+                            )
+                        }
+                        Spacer().frame(height: 0)
                     }
-                    Spacer().frame(height: 0)
                 }
+                .frame(maxHeight: .infinity)
+                .edgesIgnoringSafeArea(.bottom)
+//                            .onAppear(perform: fetchData)
+                .alert(isPresented: $showErrorAlert) {
+                    Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+                }
+                .toolbarBackground(.visible, for: .navigationBar)
+                .navigationBarTitle(navigationTitle, displayMode: .automatic)
+            } else {
+                // Fallback on earlier versions
             }
-            .frame(maxHeight: .infinity)
-            .edgesIgnoringSafeArea(.bottom)
-//            .onAppear(perform: fetchData)
-            .alert(isPresented: $showErrorAlert) {
-                Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
-            }
-            .toolbarBackground(.visible, for: .navigationBar)
-            .navigationBarTitle(categoryForLink, displayMode: .automatic)
         }
     }
     
-//        func fetchData() {
-//            let webservice = Webservice()
-//            webservice.fetchData(fromURL: "https://exercisedb.p.rapidapi.com/exercises/bodyPart/back") { (result: Result<[Exercise], Error>) in
-//                DispatchQueue.main.async {
-//                    switch result {
-//                    case .success(let exercises):
-//                        self.exercise = exercises
-//                    case .failure(let error):
-//                        self.errorMessage = error.localizedDescription
-//                        self.showErrorAlert = true
-//                    }
-//                }
-//            }
-//        }
+        func fetchData() {
+            WebService.shared.fetchData(fromURL: linkForCategory ) { (result: Result<[Exercise], Error>) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let exercises):
+                        self.exercise = exercises
+                    case .failure(let error):
+                        self.errorMessage = error.localizedDescription
+                        self.showErrorAlert = true
+                    }
+                }
+            }
+        }
 }
 
 struct ExerciseList_Previews: PreviewProvider {

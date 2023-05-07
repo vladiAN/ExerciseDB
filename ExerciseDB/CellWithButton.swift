@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct CellWithButton: View {
-    let text: String
+    var categotyName: String {
+        didSet {
+            categotyName = categotyName.capitalized
+            print(categotyName)
+        }
+    }
+    let linkForCategory: String
     @State private var isShowingDetails = false
     
     var body: some View {
@@ -18,10 +24,10 @@ struct CellWithButton: View {
             .foregroundColor(Color.white)
             .overlay(
                 HStack {
-                    Text(text)
+                    Text(categotyName)
                         .padding(.leading, 26)
                     Spacer()
-                    NavigationLink(destination: ExerciseList(categoryForLink: text)) {
+                    NavigationLink(destination: ExerciseList(navigationTitle: categotyName, linkForCategory: linkForCategory)) {
                         Image(uiImage: UIImage(named: "buttonCell")!)
                             .resizable()
                             .frame(width: 45, height: 45)

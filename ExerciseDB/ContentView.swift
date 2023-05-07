@@ -19,7 +19,7 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 switch selectedTab {
                 case .search:
-                    SearchView()
+                    SearchScreen()
                 case .home:
                     HomeView()
                 case .liked:
