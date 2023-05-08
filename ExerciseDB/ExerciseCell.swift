@@ -107,27 +107,21 @@ struct ExerciseCell: View {
                         
                         HStack(spacing: 0) {
                             
-                            if let gifURL = URL(string: urlGif) {
-                                UIImage.firstFrame(gif: urlGif) { image in
-                                    if let image = image  {
-                                        Group {
-                                            Image(uiImage: image)
-                                                .resizable()
-                                                .frame(width: 80, height: 80)
-                                                .scaledToFit()
-                                                .onTapGesture {
-                                                    self.isDetail.toggle()
-                                                }
+                            if let gifURL = URL(string: urlGif),
+                               let image = UIImage.firstFrame(gif: gifURL) {
+                                Group {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 80, height: 80)
+                                        .scaledToFit()
+                                        .onTapGesture {
+                                            self.isDetail.toggle()
                                         }
-                                    }
-                                    else {
-                                        Text("No image")
-                                    }
                                 }
-                                
                             } else {
-                                Text("Error url gif")
+                                Text("No image")
                             }
+
                             
                             Rectangle()
                                 .frame(width: 3, height: 78)

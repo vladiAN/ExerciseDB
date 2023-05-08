@@ -70,20 +70,36 @@ extension GIFView {
 
 // first frame of gif
 extension UIImage {
-    class func firstFrame(gif url: URL) -> UIImage? {
-        guard let data = try? Data(contentsOf: url) as CFData else {
-            return nil
-        }
-        guard let source = CGImageSourceCreateWithData(data, nil) else {
-            return nil
-        }
-        guard let cgimage = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
+    static func firstFrame(gif url: URL) -> UIImage? {
+        guard let data = try? Data(contentsOf: url) as CFData,
+              let source = CGImageSourceCreateWithData(data, nil),
+              let cgimage = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
             return nil
         }
         let image = UIImage(cgImage: cgimage)
         return image
     }
 }
+
+//extension UIImage {
+//    static func firstFrame(gif url: URL, completion: @escaping (UIImage?) -> Void) {
+//        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+//            guard let data = data, let source = CGImageSourceCreateWithData(data as CFData, nil),
+//                  let cgimage = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
+//                DispatchQueue.main.async {
+//                    completion(nil)
+//                }
+//                return
+//            }
+//            let image = UIImage(cgImage: cgimage)
+//            DispatchQueue.main.async {
+//                completion(image)
+//            }
+//        }
+//        task.resume()
+//    }
+//}
+
 
 //extension UIImage {
 //    static func firstFrame(gif url: URL, completion: @escaping (UIImage?) -> Void) {
@@ -104,4 +120,4 @@ extension UIImage {
 //        }.resume()
 //    }
 //}
-//
+
