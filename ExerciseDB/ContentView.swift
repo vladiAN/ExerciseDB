@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @State private var selectedTab: CustomTab = .home
     let colorBackground = #colorLiteral(red: 0.368512094, green: 0.1596673727, blue: 0.4955242872, alpha: 1)
     
@@ -17,6 +18,7 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 0) {
+                
                 switch selectedTab {
                 case .search:
                     SearchScreen()
@@ -27,7 +29,6 @@ struct ContentView: View {
                 }
                 CustomTabBar(selectedTab: $selectedTab)
             }
-            
         }
         .edgesIgnoringSafeArea(.bottom)
     }

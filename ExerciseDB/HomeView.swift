@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum PartListType {
+    
     case body
     case muscle
     
@@ -64,19 +65,24 @@ enum PartListType {
 struct HomeView: View {
     @State private var selectedTab: CustomTab = .home
     @State private var isBodyCell = true
-    let colorBackground = #colorLiteral(red: 0.368512094, green: 0.1596673727, blue: 0.4955242872, alpha: 1)
 
     var body: some View {
+        
         NavigationView {
+            
             ZStack {
-                Color(colorBackground)
+                
+                Color(UIColor.mainBackgroundColor)
                     .edgesIgnoringSafeArea(.all)
+                
                 VStack {
+                    
                     BodyMusclesTogle(isBodyCell: $isBodyCell)
                     Spacer(minLength: 18)
                     PartList(partsArray: isBodyCell ? PartListType.body.partsArray : PartListType.muscle.partsArray,
                              linkForCategory: isBodyCell ? PartListType.body.linkForCategory : PartListType.muscle.linkForCategory)
                     .animation(nil)
+                    
                 }
             }
         }

@@ -9,18 +9,19 @@ import SwiftUI
 
 struct LikedView: View {
     @State private var selectedTab: CustomTab = .liked
-    let colorBackground = #colorLiteral(red: 0.368512094, green: 0.1596673727, blue: 0.4955242872, alpha: 1)
-    var likedExerciseIdArray = FavoritesManager.shared.getFavorites()
-    
     @State private var exercises: [Exercise] = []
+    @State private var isLoading = false
     
+    var likedExerciseIdArray = FavoritesManager.shared.getFavorites()
     
     var body: some View {
         ZStack {
-            Color(colorBackground)
+            
+            Color(UIColor.mainBackgroundColor)
                 .edgesIgnoringSafeArea(.all)
             
             Group {
+                
                 if likedExerciseIdArray.isEmpty {
                     Text("No favorite exercises")
                         .foregroundColor(.white)
@@ -28,16 +29,14 @@ struct LikedView: View {
                 } else {
                     
                     ScrollView{
+                        
                         Spacer(minLength: 18)
+                        
                         LazyVStack(spacing: 18) {
+                            
                             ForEach(exercises, id: \.self) { exercise in
                                 ExerciseCell(isLiked: true,
-                                             urlGif: exercise.gifUrl,
-                                             name: exercise.name,
-                                             bodyPart: exercise.bodyPart,
-                                             target: exercise.target,
-                                             equipment: exercise.equipment,
-                                             id: exercise.id
+                                             exercise: exercise
                                 )
                             }
                             Spacer().frame(height: 0)
@@ -49,6 +48,7 @@ struct LikedView: View {
                 
             }
             .onAppear{
+                isLoading = true
                 WebService.shared.fetchExercises(withIds: likedExerciseIdArray) { result in
                     switch result {
                     case .success(let exercises):
@@ -56,11 +56,26 @@ struct LikedView: View {
                     case .failure(let error):
                         print(error)
                     }
+                    isLoading = false
                 }
             }
+            .overlay(
+                
+                Group {
+                    if isLoading {
+                        ProgressView("Loading...")
+                            .frame(width: 120, height: 120)
+                            .background(Color(UIColor.secondarySystemBackground))
+                            .foregroundColor(.primary)
+                            .cornerRadius(20)
+                            .shadow(radius: 10)
+                    }
+                }
+            )
         }
     }
 }
+
 
 struct LikedView_Previews: PreviewProvider {
     static var previews: some View {

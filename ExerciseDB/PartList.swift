@@ -13,8 +13,11 @@ struct PartList: View {
     var linkForCategory: String
     
     var body: some View {
+        
         ScrollView {
+            
             LazyVStack(spacing: 18) {
+                
                 ForEach(partsArray, id: \.self) { part in
                     let partWithoutSpaser = part.replacingOccurrences(of: " ", with: "%20")
                     let linkForCategory = self.linkForCategory + partWithoutSpaser

@@ -11,14 +11,10 @@ import URLImage
 struct ExerciseCell: View {
     @State private var isDetail = false
     @State var isLiked: Bool
-    let urlGif: String
-    let name: String
-    let bodyPart: String
-    let target: String
-    let equipment: String
-    let id: String
     
     var userDefaultsManager = FavoritesManager.shared
+    
+    let exercise: Exercise
     
     var body: some View {
         
@@ -36,7 +32,7 @@ struct ExerciseCell: View {
                         
                         VStack {
                             
-                            GIFView(url: URL(string: urlGif)!)
+                            GIFView(url: URL(string: exercise.gifUrl)!)
                                 .frame(width: 246, height: 246)
                                 .onTapGesture {
                                     self.isDetail.toggle()
@@ -50,16 +46,16 @@ struct ExerciseCell: View {
                                 
                                 VStack {
                                     
-                                    Text(name.prefix(1).uppercased() + name.dropFirst())
+                                    Text(exercise.name.prefix(1).uppercased() + exercise.name.dropFirst())
                                         .font(Font.custom("Gotham Pro", size: 19))
                                         .lineLimit(1)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .minimumScaleFactor(0.5)
                                         .padding(.leading, 18)
                                         .padding(.bottom, 1)
-
-                                                                        
-                                    Text("Equipment: " + equipment.prefix(1).uppercased() + equipment.dropFirst())
+                                    
+                                    
+                                    Text("Equipment: " + exercise.equipment.prefix(1).uppercased() + exercise.equipment.dropFirst())
                                         .font(Font.custom("Gotham Pro", size: 11))
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(.leading, 18)
@@ -67,13 +63,13 @@ struct ExerciseCell: View {
                                     
                                     HStack {
                                         
-                                        Text(bodyPart.prefix(1).uppercased() + bodyPart.dropFirst())
+                                        Text(exercise.bodyPart.prefix(1).uppercased() + exercise.bodyPart.dropFirst())
                                             .font(Font.custom("Gotham Pro", size: 11))
                                             .underline()
                                             .foregroundColor(.red)
                                         
                                         
-                                        Text(target.prefix(1).uppercased() + target.dropFirst())
+                                        Text(exercise.target.prefix(1).uppercased() + exercise.target.dropFirst())
                                             .font(Font.custom("Gotham Pro", size: 11))
                                             .underline()
                                             .foregroundColor(.red)
@@ -88,9 +84,9 @@ struct ExerciseCell: View {
                                 Button(action: {
                                     self.isLiked.toggle()
                                     if self.isLiked {
-                                        self.userDefaultsManager.addLikedExercise(idExercise: self.id)
+                                        self.userDefaultsManager.addLikedExercise(idExercise: self.exercise.id)
                                     } else {
-                                        self.userDefaultsManager.removeLikedExercise(idExercise: self.id)
+                                        self.userDefaultsManager.removeLikedExercise(idExercise: exercise.id)
                                     }
                                 }) {
                                     Image(uiImage: isLiked ? UIImage(named: "likedCell")! : UIImage(named: "noLiked")!)
@@ -107,7 +103,7 @@ struct ExerciseCell: View {
                         
                         HStack(spacing: 0) {
                             
-                            if let gifURL = URL(string: urlGif),
+                            if let gifURL = URL(string: exercise.gifUrl),
                                let image = UIImage.firstFrame(gif: gifURL) {
                                 Group {
                                     Image(uiImage: image)
@@ -121,7 +117,7 @@ struct ExerciseCell: View {
                             } else {
                                 Text("No image")
                             }
-
+                            
                             
                             Rectangle()
                                 .frame(width: 3, height: 78)
@@ -129,20 +125,20 @@ struct ExerciseCell: View {
                             
                             VStack(alignment: .leading) {
                                 
-                                Text(name.prefix(1).uppercased() + name.dropFirst())
+                                Text(exercise.name.prefix(1).uppercased() + exercise.name.dropFirst())
                                     .font(Font.custom("Gotham Pro", size: 19))
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.5)
                                 
                                 HStack {
                                     
-                                    Text(bodyPart.prefix(1).uppercased() + bodyPart.dropFirst())
+                                    Text(exercise.bodyPart.prefix(1).uppercased() + exercise.bodyPart.dropFirst())
                                         .font(Font.custom("Gotham Pro", size: 11))
                                         .underline()
                                         .foregroundColor(.red)
                                     
                                     
-                                    Text(target.prefix(1).uppercased() + target.dropFirst())
+                                    Text(exercise.target.prefix(1).uppercased() + exercise.target.dropFirst())
                                         .font(Font.custom("Gotham Pro", size: 11))
                                         .underline()
                                         .foregroundColor(.red)
@@ -151,20 +147,21 @@ struct ExerciseCell: View {
                                 .offset(y: 3)
                                 
                                 
-                                Text("Equipment: " + equipment.prefix(1).uppercased() + equipment.dropFirst())
+                                Text("Equipment: " + exercise.equipment.prefix(1).uppercased() + exercise.equipment.dropFirst())
                                     .font(Font.custom("Gotham Pro", size: 11))
                                     .offset(y: 6)
                                 
                             }
                             .padding(.leading, 13)
+                            
                             Spacer()
                             
                             Button(action: {
                                 self.isLiked.toggle()
                                 if self.isLiked {
-                                    self.userDefaultsManager.addLikedExercise(idExercise: self.id)
+                                    self.userDefaultsManager.addLikedExercise(idExercise: exercise.id)
                                 } else {
-                                    self.userDefaultsManager.removeLikedExercise(idExercise: self.id)
+                                    self.userDefaultsManager.removeLikedExercise(idExercise: exercise.id)
                                 }
                                 print(userDefaultsManager.getFavorites())
                             }) {
@@ -173,15 +170,12 @@ struct ExerciseCell: View {
                                     .frame(width: 27, height: 27)
                                     .foregroundColor(.red)
                             }
-                            
                         }
                         .buttonStyle(PlainButtonStyle())
                         .padding(.trailing, 21)
                     }
                 }
-                
             )
-        
             .cornerRadius(10)
     }
     

@@ -8,12 +8,14 @@
 import Foundation
 
 struct Exercise: Identifiable, Codable, Hashable {
+    
     let bodyPart: String
     let equipment: String
     let gifUrl: String
     let id: String
     let name: String
     let target: String
+    
 }
 
 struct WebService {

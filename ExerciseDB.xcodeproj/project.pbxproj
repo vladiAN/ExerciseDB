@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		C001A39329F6FC55002A1FE6 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001A39229F6FC55002A1FE6 /* CustomTabBar.swift */; };
 		C00D121F29F98F6000FA41C1 /* PartList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D121E29F98F6000FA41C1 /* PartList.swift */; };
+		C01EBB5E2A0B5821004B8804 /* UIImage+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01EBB5D2A0B5821004B8804 /* UIImage+Extention.swift */; };
 		C03FBF8829FBE8E300551ABB /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FBF8729FBE8E300551ABB /* ExerciseCell.swift */; };
 		C03FBF8E29FBFE1800551ABB /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = C03FBF8D29FBFE1800551ABB /* FLAnimatedImage */; };
-		C03FBF9029FC04AD00551ABB /* GIFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FBF8F29FC04AD00551ABB /* GIFView.swift */; };
+		C03FBF9029FC04AD00551ABB /* GIFView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FBF8F29FC04AD00551ABB /* GIFView+Extention.swift */; };
 		C04D189629F9517A00599B5F /* BodyMusclesTogle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04D189529F9517A00599B5F /* BodyMusclesTogle.swift */; };
 		C0CEDBEC2A050A3A00F2A4DF /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CEDBEB2A050A3A00F2A4DF /* SearchBar.swift */; };
 		C0D63D782A02495800DBC722 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = C0D63D772A02495800DBC722 /* URLImage */; };
 		C0DC6E262A01133E00C34539 /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DC6E252A01133E00C34539 /* FavoritesManager.swift */; };
+		C0E6D0DA2A0A8F1B003FD76E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E6D0D92A0A8F1B003FD76E /* UIColor+Extension.swift */; };
 		C0E70AB629F2A67F005D71CE /* ExerciseDBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E70AB529F2A67F005D71CE /* ExerciseDBApp.swift */; };
 		C0E70AB829F2A67F005D71CE /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E70AB729F2A67F005D71CE /* SearchScreen.swift */; };
 		C0E70ABA29F2A686005D71CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E70AB929F2A686005D71CE /* Assets.xcassets */; };
@@ -31,12 +33,14 @@
 /* Begin PBXFileReference section */
 		C001A39229F6FC55002A1FE6 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		C00D121E29F98F6000FA41C1 /* PartList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartList.swift; sourceTree = "<group>"; };
+		C01EBB5D2A0B5821004B8804 /* UIImage+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extention.swift"; sourceTree = "<group>"; };
 		C03FBF8729FBE8E300551ABB /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
-		C03FBF8F29FC04AD00551ABB /* GIFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFView.swift; sourceTree = "<group>"; };
+		C03FBF8F29FC04AD00551ABB /* GIFView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GIFView+Extention.swift"; sourceTree = "<group>"; };
 		C04D189529F9517A00599B5F /* BodyMusclesTogle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyMusclesTogle.swift; sourceTree = "<group>"; };
 		C09A2AC329FC3B440003E33E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C0CEDBEB2A050A3A00F2A4DF /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C0DC6E252A01133E00C34539 /* FavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		C0E6D0D92A0A8F1B003FD76E /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C0E70AB229F2A67F005D71CE /* ExerciseDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExerciseDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E70AB529F2A67F005D71CE /* ExerciseDBApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDBApp.swift; sourceTree = "<group>"; };
 		C0E70AB729F2A67F005D71CE /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
@@ -127,8 +131,10 @@
 				C00D121D29F95F7800FA41C1 /* HomeScreen */,
 				C0DA4EEA2A02B14400D0961E /* LikedScreen */,
 				C03FBF8729FBE8E300551ABB /* ExerciseCell.swift */,
-				C03FBF8F29FC04AD00551ABB /* GIFView.swift */,
 				C001A39229F6FC55002A1FE6 /* CustomTabBar.swift */,
+				C03FBF8F29FC04AD00551ABB /* GIFView+Extention.swift */,
+				C01EBB5D2A0B5821004B8804 /* UIImage+Extention.swift */,
+				C0E6D0D92A0A8F1B003FD76E /* UIColor+Extension.swift */,
 				C0E9DB9F29F7F1F500AF000B /* ContentView.swift */,
 				C0E70AB929F2A686005D71CE /* Assets.xcassets */,
 				C0E70ABB29F2A686005D71CE /* Preview Content */,
@@ -225,10 +231,12 @@
 				C0E9DB9E29F7E38D00AF000B /* LikedView.swift in Sources */,
 				C0E70AB829F2A67F005D71CE /* SearchScreen.swift in Sources */,
 				C0CEDBEC2A050A3A00F2A4DF /* SearchBar.swift in Sources */,
-				C03FBF9029FC04AD00551ABB /* GIFView.swift in Sources */,
+				C01EBB5E2A0B5821004B8804 /* UIImage+Extention.swift in Sources */,
+				C03FBF9029FC04AD00551ABB /* GIFView+Extention.swift in Sources */,
 				C0DC6E262A01133E00C34539 /* FavoritesManager.swift in Sources */,
 				C0E9DBA029F7F1F500AF000B /* ContentView.swift in Sources */,
 				C0FC950C29FA8C9B00B90ECC /* CellWithButton.swift in Sources */,
+				C0E6D0DA2A0A8F1B003FD76E /* UIColor+Extension.swift in Sources */,
 				C001A39329F6FC55002A1FE6 /* CustomTabBar.swift in Sources */,
 				C03FBF8829FBE8E300551ABB /* ExerciseCell.swift in Sources */,
 				C0E70AB629F2A67F005D71CE /* ExerciseDBApp.swift in Sources */,

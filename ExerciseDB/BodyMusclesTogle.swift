@@ -10,8 +10,7 @@ import SwiftUI
 struct BodyMusclesTogle: View {
     
     @Binding var isBodyCell: Bool
-    let colorButton = #colorLiteral(red: 0.8012182117, green: 0.2372421324, blue: 0.3401195407, alpha: 1)
-    
+        
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
@@ -20,7 +19,7 @@ struct BodyMusclesTogle: View {
             
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 114, height: 42)
-                .foregroundColor(Color(colorButton))
+                .foregroundColor(Color(UIColor.buttonTogleColor))
                 .offset(x: isBodyCell ? -59 : 59)
             
             Button(action: {

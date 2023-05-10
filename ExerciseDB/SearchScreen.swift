@@ -8,37 +8,36 @@
 import SwiftUI
 
 struct SearchScreen: View {
+    
     @State private var selectedTab: CustomTab = .search
     @State private var exercises = [Exercise]()
     @State private var filteredExercises = [Exercise]()
     @State private var isLoading = true
     @State private var searchText = ""
-    let colorBackground = #colorLiteral(red: 0.368512094, green: 0.1596673727, blue: 0.4955242872, alpha: 1)
+    
     let userDefaultsManager = FavoritesManager.shared
-    
-    
     
     var body: some View {
         
         ZStack {
-            Color(colorBackground)
+            
+            Color(UIColor.mainBackgroundColor)
                 .edgesIgnoringSafeArea(.all)
             
             VStack() {
+                
                 SearchBar(text: $searchText)
                 
                 ScrollView{
+                    
                     Spacer(minLength: 18)
+                    
                     LazyVStack(spacing: 18) {
+                        
                         ForEach(filteredExercises, id: \.self) { exercise in
                             ExerciseCell(
                                 isLiked: userDefaultsManager.isContainsExercise(idExercise: exercise.id),
-                                urlGif: exercise.gifUrl,
-                                name: exercise.name,
-                                bodyPart: exercise.bodyPart,
-                                target: exercise.target,
-                                equipment: exercise.equipment,
-                                id: exercise.id
+                                exercise: exercise
                             )
                         }
                         Spacer().frame(height: 0)
@@ -47,6 +46,18 @@ struct SearchScreen: View {
                 .frame(maxHeight: .infinity)
                 .edgesIgnoringSafeArea(.bottom)
                 .onAppear(perform: loadAllExercise)
+                .overlay(
+                    Group {
+                        if isLoading {
+                            ProgressView("Loading...")
+                                .frame(width: 120, height: 120)
+                                .background(Color(UIColor.secondarySystemBackground))
+                                .foregroundColor(.primary)
+                                .cornerRadius(20)
+                                .shadow(radius: 10)
+                        }
+                    }
+                )
             }
         }
         .onChange(of: searchText) { searchText in
@@ -55,16 +66,20 @@ struct SearchScreen: View {
     }
     
     func loadAllExercise() {
+        isLoading = true
         let urlString = "https://exercisedb.p.rapidapi.com/exercises"
         WebService.shared.fetchData(fromURL: urlString) { (result: Result<[Exercise], Error>) in
+
             switch result {
             case .success(let exercises):
                 DispatchQueue.main.async {
                     self.exercises = exercises
                     self.filteredExercises = self.filterExercises(exercises, searchText: self.searchText)
+                    isLoading = false
                 }
             case .failure(let error):
                 print(error.localizedDescription)
+                isLoading = false
             }
         }
     }

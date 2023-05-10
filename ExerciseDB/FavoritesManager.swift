@@ -10,6 +10,7 @@ import Foundation
 class FavoritesManager {
     
     static let shared = FavoritesManager()
+    
     let defaults = UserDefaults.standard
     
     private let key = "Favorites"

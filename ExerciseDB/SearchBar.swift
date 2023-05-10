@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SearchBar: View {
+    
     @Binding var text: String
     
     var body: some View {
+        
         HStack {
             
             TextField("Search...", text: $text)
