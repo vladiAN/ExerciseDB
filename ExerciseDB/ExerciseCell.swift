@@ -11,6 +11,8 @@ import URLImage
 struct ExerciseCell: View {
     @State private var isDetail = false
     @State var isLiked: Bool
+    @State private var isLoading = false
+    @State private var image: UIImage? = nil
     
     var userDefaultsManager = FavoritesManager.shared
     
@@ -103,20 +105,40 @@ struct ExerciseCell: View {
                         
                         HStack(spacing: 0) {
                             
-                            if let gifURL = URL(string: exercise.gifUrl),
-                               let image = UIImage.firstFrame(gif: gifURL) {
-                                Group {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .frame(width: 80, height: 80)
-                                        .scaledToFit()
-                                        .onTapGesture {
-                                            self.isDetail.toggle()
-                                        }
+                            Group {
+                                    if isLoading {
+                                        ProgressView()
+                                            .progressViewStyle(CircularProgressViewStyle())
+                                            .frame(width: 80, height: 80)
+                                    } else if let loadedImage = image {
+                                        Image(uiImage: loadedImage)
+                                            .resizable()
+                                            .frame(width: 80, height: 80)
+                                            .scaledToFit()
+                                            .onTapGesture {
+                                                self.isDetail.toggle()
+                                            }
+                                    } else {
+                                        Text("No image")
+                                    }
                                 }
-                            } else {
-                                Text("No image")
-                            }
+                                .onAppear {
+                                    self.isLoading = true
+                                    if let gifURL = URL(string: exercise.gifUrl) {
+                                        DispatchQueue.global(qos: .background).async {
+                                            if let loadedImage = UIImage.firstFrame(gif: gifURL) {
+                                                DispatchQueue.main.async {
+                                                    self.image = loadedImage
+                                                    self.isLoading = false
+                                                }
+                                            } else {
+                                                DispatchQueue.main.async {
+                                                    self.isLoading = false
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             
                             
                             Rectangle()
