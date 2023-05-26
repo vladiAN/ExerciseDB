@@ -81,7 +81,7 @@ struct HomeView: View {
                     Spacer(minLength: 18)
                     PartList(partsArray: isBodyCell ? PartListType.body.partsArray : PartListType.muscle.partsArray,
                              linkForCategory: isBodyCell ? PartListType.body.linkForCategory : PartListType.muscle.linkForCategory)
-                    .animation(nil)
+                    .animation(nil, value: UUID())
                     
                 }
             }
